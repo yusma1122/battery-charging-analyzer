@@ -450,6 +450,82 @@
           gap: 0.75rem;
         }
       }
+
+      .header-info-clean {
+        background-color: #ffffff;
+        padding: 1rem 0;
+        border-bottom: 1px solid #e5e7eb;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        font-family: "Poppins", sans-serif;
+      }
+
+      .header-info-inner {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .creator-left {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+        color: #1e293b;
+      }
+
+      .creator-left i {
+        color: #2563eb;
+        font-size: 1.3rem;
+      }
+
+      .creator-left span {
+        color: #64748b;
+        font-weight: 400;
+      }
+
+      .creator-middle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-style: italic;
+        color: #475569;
+        flex: 1;
+        justify-content: center;
+      }
+
+      .creator-middle i {
+        color: #94a3b8;
+      }
+
+      .creator-right {
+        display: flex;
+        gap: 0.8rem;
+      }
+
+      .creator-right a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: #2563eb;
+        transition: transform 0.2s ease, color 0.2s ease;
+      }
+
+      .creator-right a:hover {
+        color: #1d4ed8;
+        transform: scale(1.15);
+      }
+
+      @media (max-width: 768px) {
+        .header-info-inner {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
     </style>
   </head>
   <body>
@@ -457,6 +533,33 @@
       <div class="header">
         <h1>Battery Charging Analyzer</h1>
         <p>Analisis data pengisian baterai dan prediksi waktu charging</p>
+      </div>
+
+      <div class="header-info-clean" style="margin-bottom: 1rem">
+        <div class="header-info-inner">
+          <div class="creator-left">
+            <i class="fas fa-code"></i>
+            <div>
+              <strong>Yusma Rahman</strong>
+              <span>- Junior Web Developer</span>
+            </div>
+          </div>
+          <div class="creator-middle">
+            <i class="fas fa-quote-left"></i>
+            <em>"From small code to real-world impact"</em>
+          </div>
+          <div class="creator-right">
+            <a
+              href="https://www.linkedin.com/in/yusmarahman09/"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/yusma1122" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
       </div>
 
       <div class="upload-section">
