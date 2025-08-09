@@ -526,6 +526,177 @@
           text-align: center;
         }
       }
+
+      /* Format Guide Styles */
+      .format-guide {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+      }
+
+      .format-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .format-header h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-left: 0.5rem;
+      }
+
+      .format-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .format-instructions h4 {
+        color: #374151;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .format-instructions ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .format-instructions li {
+        margin-bottom: 0.75rem;
+        padding-left: 1.5rem;
+        position: relative;
+        color: #4b5563;
+      }
+
+      .format-instructions li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #10b981;
+        font-weight: bold;
+      }
+
+      .sample-table {
+        background: #f8fafc;
+        border-radius: 8px;
+        padding: 1rem;
+        border: 1px solid #e2e8f0;
+      }
+
+      .csv-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+
+      .csv-table th,
+      .csv-table td {
+        padding: 0.75rem 0.5rem;
+        text-align: center;
+        border: 1px solid #d1d5db;
+      }
+
+      .csv-table th {
+        background-color: #3b82f6;
+        color: white;
+        font-weight: 600;
+      }
+
+      .csv-table tbody tr:nth-child(even) {
+        background-color: #f9fafb;
+      }
+
+      .download-sample {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .download-btn {
+        background: linear-gradient(45deg, #10b981, #059669);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
+
+      .guide-note {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+        color: #1e40af;
+      }
+
+      @media (max-width: 768px) {
+        .format-content {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .download-sample {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+      /* Collapse functionality */
+      .format-header {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .format-header:hover {
+        background-color: #f8fafc;
+        border-radius: 8px;
+        padding: 0.5rem;
+        margin: -0.5rem;
+      }
+
+      .collapse-icon {
+        margin-left: auto;
+        transition: transform 0.3s ease;
+        font-size: 1.2rem;
+        color: #64748b;
+      }
+
+      .collapse-icon.rotated {
+        transform: rotate(180deg);
+      }
+
+      .format-body {
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+
+      .format-body.collapsed {
+        max-height: 0;
+      }
+
+      .format-body.expanded {
+        max-height: 1000px; /* Adjust based on content height */
+      }
     </style>
   </head>
   <body>
@@ -558,6 +729,96 @@
             <a href="https://github.com/yusma1122" target="_blank">
               <i class="fab fa-github"></i>
             </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Format Guide Section -->
+      <div class="format-guide">
+        <div class="format-header" onclick="toggleFormatGuide()">
+          <i class="fas fa-file-csv" style="color: #10b981"></i>
+          <h3>Format Data CSV & Sample Download</h3>
+          <i
+            class="fas fa-chevron-down collapse-icon rotated"
+            id="collapseIcon"
+          ></i>
+        </div>
+
+        <div class="format-body collapsed" id="formatBody">
+          <div class="format-content">
+            <div class="format-instructions">
+              <h4>📋 Format yang Diperlukan:</h4>
+              <ul>
+                <li>Kolom 1: % Baterai Awal (contoh: 20%)</li>
+                <li>Kolom 2: Durasi Charging (contoh: 5:30 atau 5)</li>
+                <li>Kolom 3: % Baterai Akhir (contoh: 90%)</li>
+                <li>Kolom 4: Tanggal (opsional)</li>
+              </ul>
+
+              <h4>💡 Tips:</h4>
+              <ul>
+                <li>Bisa dibuat di Excel lalu Save As CSV</li>
+                <li>Durasi bisa format jam:menit (5:30) atau jam saja (5)</li>
+                <li>Persentase bisa pakai % atau tanpa %</li>
+                <li>Minimal 3 data untuk analisis yang akurat</li>
+              </ul>
+            </div>
+
+            <div class="sample-table">
+              <h4>📊 Contoh Data CSV:</h4>
+              <table class="csv-table">
+                <thead>
+                  <tr>
+                    <th>% Awal</th>
+                    <th>Durasi (Jam)</th>
+                    <th>% Akhir</th>
+                    <th>Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>20%</td>
+                    <td>5:30</td>
+                    <td>90%</td>
+                    <td>1/15/2024</td>
+                  </tr>
+                  <tr>
+                    <td>15%</td>
+                    <td>6</td>
+                    <td>95%</td>
+                    <td>1/16/2024</td>
+                  </tr>
+                  <tr>
+                    <td>25%</td>
+                    <td>4:45</td>
+                    <td>85%</td>
+                    <td>1/17/2024</td>
+                  </tr>
+                  <tr>
+                    <td>30%</td>
+                    <td>5</td>
+                    <td>100%</td>
+                    <td>1/18/2024</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="download-sample">
+            <button class="download-btn" onclick="downloadSampleCSV()">
+              <i class="fas fa-download"></i>
+              Download Sample CSV
+            </button>
+          </div>
+
+          <div class="guide-note">
+            <strong>
+              <i class="fas fa-info-circle"></i>
+              Catatan Penting:
+            </strong>
+            Data yang Anda upload akan diproses secara lokal di browser Anda dan
+            tidak akan dikirim ke server manapun. Data Anda aman dan privat.
           </div>
         </div>
       </div>
@@ -1213,6 +1474,55 @@
         resultDiv.className = "error";
         resultDiv.innerHTML = message;
         resultDiv.classList.remove("hidden");
+      }
+
+      // Function untuk download sample CSV
+      function downloadSampleCSV() {
+        const sampleData = [
+          ["% Awal", "Durasi (Jam)", "% Akhir", "Tanggal"],
+          ["20%", "5:30", "90%", "1/15/2024"],
+          ["15%", "6", "95%", "1/16/2024"],
+          ["25%", "4:45", "85%", "1/17/2024"],
+          ["30%", "5", "100%", "1/18/2024"],
+          ["18%", "5:15", "88%", "1/19/2024"],
+          ["22%", "4:30", "82%", "1/20/2024"],
+        ];
+
+        // Convert to CSV format
+        const csvContent = sampleData.map((row) => row.join(",")).join("\n");
+
+        // Create download link
+        const blob = new Blob([csvContent], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+
+        link.setAttribute("href", url);
+        link.setAttribute("download", "battery-sample.csv");
+        link.style.visibility = "hidden";
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // Function untuk toggle collapse
+      function toggleFormatGuide() {
+        const formatBody = document.getElementById("formatBody");
+        const collapseIcon = document.getElementById("collapseIcon");
+
+        if (formatBody.classList.contains("expanded")) {
+          // Collapse
+          formatBody.classList.remove("expanded");
+          formatBody.classList.add("collapsed");
+          collapseIcon.classList.add("rotated");
+        } else {
+          // Expand
+          formatBody.classList.remove("collapsed");
+          formatBody.classList.add("expanded");
+          collapseIcon.classList.remove("rotated");
+        }
       }
     </script>
   </body>
